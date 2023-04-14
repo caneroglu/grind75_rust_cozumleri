@@ -57,19 +57,37 @@
 //   }
 // }
 impl Solution {
-    pub fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn merge_two_lists(mut list1: Option<Box<ListNode>>, mut list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
 
+        let mut birinci_list = &mut list1;
 
-        let mut sonraki_listnode =
-        let mut sonraki = list1.clone();
-        let mut ans_list = Box::new(ListNode::new(0));
+        while list2.is_some() {
 
-        while let Some(birinci_list) = sonraki{
-            println!("{:?}",birinci_list.val);
-            sonraki = birinci_list.next;
+            if birinci_list.is_none() || list2.as_ref()?.val < birinci_list.as_ref()?.val{
+                std::mem::swap(birinci_list,&mut list2)
+                // birinci_list = None ise veya birinci_list değeri 2.listten büyükse, Merge için, list2 konumu ile birinci listi RAM'de değiştir.
+            }
+
+            birinci_list = &mut birinci_list.as_mut()?.next;
+
         }
-        println!("cikis");
-        list2
+
+        list1
     }
+
+    //let mut siradaki_node = &mut list1;
+    //println!("{}",siradaki_node.as_ref()?.val);
+
+    // siradaki_node = &mut Option<Box..>
+    // okumamız için '&mut' olarak almamız şart.
+    // atarkende yine '&mut'lu atama yapmalıyız.
+    // aşağıdaki '&mut' yukarıdaki değişken tanımını götürüyor.
+    // '.as_mut()' ise 'siradaki_node'u mutable referansıyla alıyor, çünkü solda yine KENDİSİNİ değiştiriyoruz.
+    // '?' ile Option'u açıyoruz.
+    // Açtıktan sonra 'next'teki Option'lu değeri okuyabiliyoruz.
+    // * Bu şekilde LinkedList üzerinde ilerleyebiliriz.
+    // siradaki_node = &mut siradaki_node.as_mut()?.next;
+    // % ----
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
