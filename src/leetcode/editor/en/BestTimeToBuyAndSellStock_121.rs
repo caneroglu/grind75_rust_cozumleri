@@ -79,6 +79,27 @@ impl Solution {
             fiyat = std::cmp::min(fiyat,prices[n]);
         });
         maks_kazanc
+
+        /*
+        ör: [7,1,5,3,6,4]
+        beklenen: 5, 2.gün al, 5.gün sat , 6-1 = 5.
+
+        -> prices[1] = 1,
+        <- {
+            kar = 1 - 7 = -6
+
+            maks_k = 0;
+            fiyat = 1
+        }
+        -> prices[2] = 5,
+        <- {
+            kar = 5 - 1, = 4
+
+            maks_k = 4;
+            fiyat = 1
+        }
+        ..
+        */
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
