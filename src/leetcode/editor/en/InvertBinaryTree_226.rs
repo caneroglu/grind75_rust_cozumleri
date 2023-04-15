@@ -56,10 +56,11 @@
 use std::rc::Rc;
 use std::cell::RefCell;
 impl Solution {
-    pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-       println!("{:?}",root.as_ref().unwrap().borrow().val);
+    pub fn invert_tree( root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+       if let Some(dal) = root.as_ref(){
+           dal.borrow_mut().right =
+       }
 
-        root
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
