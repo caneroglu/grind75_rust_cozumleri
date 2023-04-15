@@ -61,8 +61,8 @@ impl Solution {
                 let tek_mut = &mut *agac_ici.borrow_mut();
                 std::mem::swap(&mut tek_mut.right,&mut tek_mut.left);
 
-                Self::invert_tree(agac_ici.borrow_mut().right.clone());
-                Self::invert_tree(agac_ici.borrow_mut().left.clone());
+                Self::invert_tree(agac_ici.borrow().left);
+                Self::invert_tree(agac_ici.borrow().right);
             }
         root
     }
