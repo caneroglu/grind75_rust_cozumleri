@@ -55,10 +55,12 @@ impl Solution {
             // Mesela, '[[1,3],[6,9]]' yeni aralık, '[10,12]' gelsin. Hepsinden büyük olur.
 
         intervals.into_iter().enumerate().for_each(|(indis,vekt)|{
-            // Birinci diziden büyük, ikincisinden bilmiyoruz. O sebeple birinci diziyi cevaba ekle.
+            // Sıradaki diziden büyük, o sebeple sıradaki diziyi komple cevaba ekle.
             if vekt[1] < yeni_aralik[0] {
                 cevap.push(vekt.clone())
-                // Birinci diziden küçükse, 'yeni_aralik'i cevaba ekle.
+
+                // Siradaki diziden küçük, o sebeple 'yeni_aralik'i cevaba ekle.
+                // ve kodun en sonunda eklenmek üzere 'yeni_aralik' ile değiş.
             } else if vekt[0] > yeni_aralik[1] {
                 cevap.push(yeni_aralik.clone());
                 yeni_aralik = vekt.clone();
