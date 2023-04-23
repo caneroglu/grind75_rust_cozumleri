@@ -49,27 +49,37 @@
 impl Solution {
     // 'TWO SUM' sorusunun biraz daha özel hali.
     pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+        println!("bir : {:?}",nums);
         nums.sort();
+        println!("iki : {:?}",nums);
         nums.dedup();
+        println!("üç : {:?}",nums);
 
-        let vc = nums.iter().enumerate().map(|(indis,&eleman)|{
-            let mut left_ptr = indis + 1;
-            let mut right_ptr = nums.len() - 1;
-            while left_ptr < right_ptr {
-                let toplam = eleman + nums[left_ptr] + nums[right_ptr];
+        let mut cevap_vec = vec![];
+
+        for (indis,&val) in nums.iter().enumerate()  {
+            let mut sol_ptr = indis + 1 ;
+            let mut sag_ptr = nums.len() - 1;
+
+            while sol_ptr < sag_ptr {
+                let toplam = val + nums[sol_ptr] + nums[sag_ptr];
+
                 if toplam > 0 {
-                    right_ptr -= 1;
+                    sag_ptr -= 1;
                 } else if toplam < 0 {
-                    left_ptr += 1;
+                    sol_ptr += 1;
                 } else {
-                    left_ptr += 1;
-                    return vec![eleman,nums[left_ptr],nums[right_ptr]]
+                    cevap_vec.push(vec![val,nums[sol_ptr],nums[sag_ptr]]);
+                    sol_ptr += 1;
+
+                    while nums[sol_ptr] == nums[sol_ptr - 1] && sol_ptr < sag_ptr {
+                        sol_ptr += 1;
+                    }
                 }
             }
-            vec![]
-        }).collect::<Vec<Vec<i32>>>();
+        }
 
-        vc
+     cevap_vec
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
